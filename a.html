@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <div class="flex justify-center items-center h-screen">
+          <div class="w-1/3">
+                <textarea class="w-full h-32 border-2 border-gray-300 p-8 rounded-xl" id="catFact"></textarea>
+                <button class="bg-indigo-500 text-white p-2 w-full mt-2 rounded-full " id="getFact">Get Fact</button>
+          </div>
+
+
+</body>
+<script>
+    const getFact = document.getElementById('getFact');
+    const catFact = document.getElementById('catFact');
+
+    getFact.addEventListener('click', async () => {
+        document.getElementById('getFact').innerText = 'Loading...';
+        const response =  await fetch('https://catfact.ninja/fact');
+        const data = await response.json();
+        catFact.value = data.fact;
+        document.getElementById('getFact').innerText = 'Get Fact';
+
+        console.log(response);
+
+    });
+</script>
+</html>
